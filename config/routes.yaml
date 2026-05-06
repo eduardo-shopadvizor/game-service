@@ -3,3 +3,9 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+web_catalog:
+    resource:
+        path: ../src/UI/Web/Controller/
+        namespace: Saz\Game\UI\Web\Controller
+    type: attribute

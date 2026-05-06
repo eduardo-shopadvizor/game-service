@@ -17,6 +17,10 @@ services:
 
     Saz\Game\UI\GraphQL\FieldResolver\FieldResolver: ~
 
+    Saz\Game\UI\Web\Controller\:
+        resource: '%kernel.project_dir%/src/UI/Web/Controller'
+        tags: ['controller.service_arguments']
+
 when@test:
     parameters:
         helix_graphql.test.resources: '%kernel.project_dir%/tests/UI/Resources'

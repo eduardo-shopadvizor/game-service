@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ game.name() }} — Game Catalog{% endblock %}
+
+{% block content %}
+
+{% set genreColors = {
+    'action':    'bg-red-500/20 text-red-400 ring-red-500/30',
+    'rpg':       'bg-purple-500/20 text-purple-400 ring-purple-500/30',
+    'strategy':  'bg-blue-500/20 text-blue-400 ring-blue-500/30',
+    'sports':    'bg-green-500/20 text-green-400 ring-green-500/30',
+    'adventure': 'bg-yellow-500/20 text-yellow-400 ring-yellow-500/30',
+} %}
+{% set genreColor = genreColors[game.genre().value] ?? 'bg-gray-500/20 text-gray-400 ring-gray-500/30' %}
+
+<div class="mb-6">
+    <a href="{{ path('catalog_index') }}"
+       class="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-violet-400 transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to catalog
+    </a>
+</div>
+
+<div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+    {# Cover image #}
+    <div class="rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/{{ game.id() }}/800/450"
+             alt="{{ game.name() }}"
+             class="w-full aspect-video object-cover">
+    </div>
+
+    {# Game info #}
+    <div class="space-y-6">
+
+        <div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ring-1 {{ genreColor }} mb-3">
+                {{ game.genre().value|upper }}
+            </span>
+            <h1 class="text-4xl font-bold text-white leading-tight">{{ game.name() }}</h1>
+        </div>
+
+        {% if game.description() %}
+            <p class="text-lg text-gray-300 leading-relaxed">{{ game.description() }}</p>
+        {% endif %}
+
+        <div class="pt-4 border-t border-gray-800 grid grid-cols-2 gap-4 text-sm">
+            <div>
+                <p class="text-gray-500 mb-1">Added</p>
+                <p class="text-gray-200 font-medium">{{ game.createdAt()|date('F j, Y') }}</p>
+            </div>
+            <div>
+                <p class="text-gray-500 mb-1">Last updated</p>
+                <p class="text-gray-200 font-medium">{{ game.updatedAt()|date('F j, Y') }}</p>
+            </div>
+        </div>
+
+        <div class="pt-2">
+            <a href="{{ path('catalog_index', {genre: game.genre().value}) }}"
+               class="inline-flex items-center gap-2 text-sm text-violet-400 hover:text-violet-300 transition-colors">
+                Browse more {{ game.genre().value }} games →
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

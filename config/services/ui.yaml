@@ -21,6 +21,9 @@ services:
         resource: '%kernel.project_dir%/src/UI/Web/Controller'
         tags: ['controller.service_arguments']
 
+    Saz\Game\UI\Web\Twig\:
+        resource: '%kernel.project_dir%/src/UI/Web/Twig'
+
 when@test:
     parameters:
         helix_graphql.test.resources: '%kernel.project_dir%/tests/UI/Resources'

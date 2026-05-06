@@ -1,0 +1,3 @@
+overblog_graphql:
+    definitions:
+        default_field_resolver: 'Saz\Game\UI\GraphQL\FieldResolver\FieldResolver'

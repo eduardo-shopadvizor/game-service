@@ -1,0 +1,25 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Repositories
+
+    Saz\Game\Domain\:
+        resource: '%kernel.project_dir%/src/Domain/**/Repository/*'
+        abstract: true
+
+    Saz\Game\Infrastructure\Repository\:
+        resource: '%kernel.project_dir%/src/Infrastructure/Repository/*'
+
+    Saz\Game\Infrastructure\DataFixtures\:
+        resource: '%kernel.project_dir%/src/Infrastructure/DataFixtures'
+
+when@test:
+    services:
+
+        # Security
+        saz.shared_context.security:
+            class: Saz\SharedContext\Test\Infrastructure\Security\SecurityService

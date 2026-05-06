@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /home/edu/servicios/game-service/src/Application/Game/Create)",
+      "Bash(mkdir -p /home/edu/servicios/game-service/src/Application/Game/Update)",
+      "Bash(mkdir -p /home/edu/servicios/game-service/src/Application/Game/Delete)",
+      "Bash(mkdir -p /home/edu/servicios/game-service/src/Application/Game/List)",
+      "Bash(mkdir -p /home/edu/servicios/game-service/src/Domain/Common/Exception)",
+      "Bash(xargs ls -la)",
+      "Bash(composer lint *)",
+      "Bash(PHP_CS_FIXER_IGNORE_ENV=1 composer lint *)",
+      "Read(//home/edu/servicios/brand-service/src/UI/GraphQL/Resolver/Query/**)",
+      "Bash(git *)"
+    ]
+  }
+}

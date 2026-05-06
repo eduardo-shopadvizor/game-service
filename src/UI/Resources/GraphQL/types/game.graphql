@@ -1,0 +1,8 @@
+type Game {
+    id: ID!
+    name: String!
+    description: String
+    genre: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}

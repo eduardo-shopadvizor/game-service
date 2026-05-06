@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Saz\Game\Domain\Game\ValueObject;
 
-use Saz\Game\Domain\Game\Exception\InvalidGameNameFormatException;
 use Saz\CatalogSharedContext\Domain\Base\ValueObject\StringValueObject;
+use Saz\Game\Domain\Game\Exception\InvalidGameNameFormatException;
 
 /**
  * Value Object para el nombre de un Game.

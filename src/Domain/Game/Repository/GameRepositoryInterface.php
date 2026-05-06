@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Saz\Game\Domain\Game\Repository;
 
+use Saz\CatalogSharedContext\Domain\Criteria\Criteria;
 use Saz\Game\Domain\Game\Model\Game;
 use Saz\Game\Domain\Game\ValueObject\GameId;
 use Saz\Game\Domain\Game\ValueObject\GameName;
-use Saz\CatalogSharedContext\Domain\Criteria\Criteria;
 
 /**
  * Contrato del repositorio de Game definido en el dominio.

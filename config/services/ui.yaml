@@ -1,0 +1,22 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Saz\Game\UI\GraphQL\Resolver\:
+        resource: '%kernel.project_dir%/src/UI/GraphQL/Resolver'
+        exclude: '{BaseResolver.php, BaseMutation.php}'
+
+    Saz\Game\UI\GraphQL\ResolverMap\:
+        resource: '%kernel.project_dir%/src/UI/GraphQL/ResolverMap'
+        tags:
+            - name: overblog_graphql.resolver_map
+              schema: default
+
+    Saz\Game\UI\GraphQL\FieldResolver\FieldResolver: ~
+
+when@test:
+    parameters:
+        helix_graphql.test.resources: '%kernel.project_dir%/tests/UI/Resources'

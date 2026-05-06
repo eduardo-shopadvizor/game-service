@@ -1,0 +1,9 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Saz\Game\Application\:
+        resource: '%kernel.project_dir%/src/Application/**'

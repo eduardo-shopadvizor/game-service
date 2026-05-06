@@ -10,7 +10,8 @@
       "Bash(composer lint *)",
       "Bash(PHP_CS_FIXER_IGNORE_ENV=1 composer lint *)",
       "Read(//home/edu/servicios/brand-service/src/UI/GraphQL/Resolver/Query/**)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(php *)"
     ]
   }
 }

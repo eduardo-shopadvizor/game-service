@@ -5,15 +5,15 @@
 Check whether a skill covers the task. Skills carry the full conventions and
 step-by-step workflow so you don't have to infer them from scratch.
 
-| Task | Skill |
-|---|---|
-| Adding a feature, refactoring, or evaluating a pattern | `guidelines` |
-| Creating a new Command or Query (use case) | `usecase-guideline` |
-| Wiring a use case through Doctrine + GraphQL | `wire-usecase` |
-| Writing unit tests for a Handler | `unit-tests-guidelines` |
-| Updating or generating documentation | `doc-generator` |
+| Task                                                           | Skill |
+|----------------------------------------------------------------|---|
+| Adding a feature, refactoring, or evaluating a pattern path | `guidelines` |
+| Creating a new Command or Query (use case)                     | `usecase-guideline` |
+| Wiring a use case through Doctrine + GraphQL                   | `wire-usecase` |
+| Writing unit tests for a Handler                               | `unit-tests-guidelines` |
+| Updating or generating documentation                           | `doc-generator` |
 | Committing and pushing on a feature branch (`feature/SN-XXXX`) | `auto-commit` |
-| Code changes without an explicit commit request | `no-auto-commit` |
+| Code changes without an explicit commit request                | `no-auto-commit` |
 
 ## Commands
 

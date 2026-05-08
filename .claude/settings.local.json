@@ -16,7 +16,10 @@
       "Bash(xargs cat)",
       "Bash(composer dump-autoload *)",
       "Bash(PHP_CS_FIXER_IGNORE_ENV=1 composer lint:fix)",
-      "Bash(composer test *)"
+      "Bash(composer test *)",
+      "Bash(xargs ls)",
+      "Read(//home/edu/.claude/**)",
+      "Bash(python3 -m json.tool)"
     ]
   }
 }

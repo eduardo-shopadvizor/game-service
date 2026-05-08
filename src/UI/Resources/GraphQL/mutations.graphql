@@ -1,3 +1,3 @@
 type Mutation {
-    _empty: Boolean
+    createGame(input: CreateGameInput!): Game!
 }

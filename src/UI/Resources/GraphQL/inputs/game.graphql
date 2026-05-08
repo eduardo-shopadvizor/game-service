@@ -1,0 +1,5 @@
+input CreateGameInput {
+    name: String!
+    description: String
+    genre: String!
+}

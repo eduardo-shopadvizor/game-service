@@ -1,22 +1,34 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Skills — check before starting any task
+
+Check whether a skill covers the task. Skills carry the full conventions and
+step-by-step workflow so you don't have to infer them from scratch.
+
+| Task | Skill |
+|---|---|
+| Adding a feature, refactoring, or evaluating a pattern | `guidelines` |
+| Creating a new Command or Query (use case) | `usecase-guideline` |
+| Wiring a use case through Doctrine + GraphQL | `wire-usecase` |
+| Writing unit tests for a Handler | `unit-tests-guidelines` |
+| Updating or generating documentation | `doc-generator` |
+| Committing and pushing on a feature branch (`feature/SN-XXXX`) | `auto-commit` |
+| Code changes without an explicit commit request | `no-auto-commit` |
 
 ## Commands
 
 ```bash
-# Testing
-composer test:all        # Full suite: DB setup, run tests, cleanup
 composer test            # Run PHPUnit only (no DB setup/teardown)
+composer test:all        # Full suite: DB setup, run tests, cleanup
 composer test:initialize # Set up test database
 
-# Run a single test file or method
+# Single test
 php bin/phpunit tests/Unit/Application/Game/Create/CreateGameCommandHandlerTest.php
 php bin/phpunit --filter testMethodName
 
 # Code quality
-composer lint            # Run phpcs + php-cs-fixer + phpstan (level 8)
-composer lint:fix        # Auto-fix style issues (phpcbf + php-cs-fixer)
+composer lint            # phpcs + php-cs-fixer + phpstan (level 8)
+composer lint:fix        # Auto-fix style issues
 ```
 
 ## Architecture
@@ -27,46 +39,47 @@ Hexagonal architecture with CQRS. Namespace root: `Saz\Game\`.
 src/
 ├── Application/   # Use cases: Commands, Queries, EventHandlers (CQRS)
 ├── Domain/        # Entities, Value Objects, Repository interfaces, Exceptions
-├── Infrastructure/# Doctrine ORM repos, DataFixtures
-└── UI/GraphQL/    # Resolvers (Query/Mutation), ResolverMaps
+├── Infrastructure/# Doctrine ORM repos, DataFixtures, XML mappings, custom types
+└── UI/GraphQL/    # Resolvers (Query/Mutation), ResolverMaps, .graphql schemas
 ```
 
-**Stack**: PHP 8.3+, Symfony 7.3, Doctrine ORM (PostgreSQL), GraphQL API, Symfony Messenger for async messaging.
+**Stack**: PHP 8.3+, Symfony 7.3, Doctrine ORM (PostgreSQL), GraphQL (Overblog),
+Symfony Messenger for async messaging.
 
-### Domain layer
+### Domain
 
-`Game` is the core aggregate. Key value objects: `GameId`, `GameName`, `GameDescription`. `GameGenreEnum` contains genre values.
+`Game` is the core aggregate. Key value objects: `GameId`, `GameName`,
+`GameDescription`, `GameGenreEnum`.  
+Repository interface: `Domain/Game/Repository/GameRepositoryInterface.php`.  
+Doctrine implementation: `Infrastructure/Repository/DoctrineGameRepository.php`.
 
-Repository interface is defined in `Domain/Game/Repository/`; Doctrine implementation lives in `Infrastructure/Repository/`.
+### Application
 
-### Application layer
-
-Each use case lives in its own directory under `Application/Game/<Feature>/`:
-- `CreateGameCommand` + `CreateGameCommandHandler` + `GameCreatedEvent`
-- Same pattern for Update, Delete, Find, List
-
+Each use case lives in `Application/Game/<Feature>/` and follows the pattern:
+`Command/Query` → `Handler` → `UseCase` (see `usecase-guideline` skill for details).  
 Event handlers dispatch domain events to external Pub/Sub topics.
 
-### Infrastructure layer
+### Infrastructure
 
-- `Infrastructure/Doctrine/` — custom Doctrine types
-- `Infrastructure/DataFixtures/` — test fixtures (loaded with `doctrine:fixtures:load`)
-- `Infrastructure/Repository/` — Doctrine implementations of domain repository interfaces
-- `Infrastructure/Resources/config/doctrine/` — Doctrine XML mappings
+- `Infrastructure/Doctrine/` — custom Doctrine types (one per Value Object)
+- `Infrastructure/DataFixtures/` — test fixtures (`doctrine:fixtures:load`)
+- `Infrastructure/Repository/` — Doctrine repository implementations
+- `Infrastructure/Resources/config/doctrine/` — XML entity mappings
 
-### UI layer
+### UI
 
-GraphQL resolvers follow the ResolverMap pattern. Mutations and queries are split into separate resolver classes under `UI/GraphQL/Resolver/Mutation/` and `UI/GraphQL/Resolver/Query/`.
+Resolvers under `UI/GraphQL/Resolver/Mutation/` and `UI/GraphQL/Resolver/Query/`.  
+Schemas under `UI/Resources/GraphQL/`.  
+Every resolver must be registered in `GameResolverMap`.
 
-## Test conventions
+## Tests
 
-Tests mirror the `src/` directory structure under `tests/Unit/`, `tests/Integration/`, `tests/Functional/`, `tests/UI/`.
+Tests mirror `src/` under `tests/Unit/`, `tests/Integration/`, `tests/Functional/`, `tests/UI/`.  
+Unit tests use the Mother pattern: `GameMother::create()`.  
+`APP_ENV=test` is forced; test environment uses SQLite.  
+PHPStan runs at **level 8** — all new code must pass.
 
-- **Unit tests** use the Mother pattern for test data: `GameMother::create()`, etc.
-- `APP_ENV=test` is forced; test environment uses SQLite.
-- PHPStan runs at **level 8** — all new code must pass static analysis.
-
-## Key environment variables
+## Environment variables
 
 | Variable | Purpose |
 |---|---|

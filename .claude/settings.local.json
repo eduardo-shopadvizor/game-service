@@ -11,7 +11,12 @@
       "Bash(PHP_CS_FIXER_IGNORE_ENV=1 composer lint *)",
       "Read(//home/edu/servicios/brand-service/src/UI/GraphQL/Resolver/Query/**)",
       "Bash(git *)",
-      "Bash(php *)"
+      "Bash(php *)",
+      "Bash(composer require *)",
+      "Bash(xargs cat)",
+      "Bash(composer dump-autoload *)",
+      "Bash(PHP_CS_FIXER_IGNORE_ENV=1 composer lint:fix)",
+      "Bash(composer test *)"
     ]
   }
 }

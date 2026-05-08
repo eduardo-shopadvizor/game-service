@@ -122,15 +122,32 @@ Schema files in `src/UI/Resources/GraphQL/`.
 
 #### Web Catalog (`src/UI/Web/`)
 
-Symfony controller + Twig templates with Tailwind CSS (CDN).
+Symfony controller + Twig templates with Tailwind CSS (CDN). Supports dark/light mode via a toggle button that persists the preference in `localStorage`.
 
 | Component | Location | Role |
 |---|---|---|
 | `CatalogController` | `Web/Controller/CatalogController.php` | `GET /catalog` and `GET /catalog/{id}` |
-| `base.html.twig` | `Web/Resources/views/base.html.twig` | Layout |
-| `catalog/index.html.twig` | `Web/Resources/views/catalog/index.html.twig` | Game grid with genre filters |
+| `GameImageExtension` | `Web/Twig/GameImageExtension.php` | Twig extension providing `game_cover()` function |
+| `base.html.twig` | `Web/Resources/views/base.html.twig` | Layout with dark/light mode toggle |
+| `catalog/index.html.twig` | `Web/Resources/views/catalog/index.html.twig` | Game grid with genre filter pills |
 | `catalog/show.html.twig` | `Web/Resources/views/catalog/show.html.twig` | Game detail page |
-| `components/game_card.html.twig` | `Web/Resources/views/components/` | Reusable card component |
+| `components/game_card.html.twig` | `Web/Resources/views/components/` | Card with genre gradient cover |
+
+##### Genre gradient covers
+
+Each game card displays a CSS gradient background instead of a photo, using genre-specific colors and an emoji icon. No external image service required.
+
+| Genre | Gradient | Emoji |
+|---|---|---|
+| action | Dark red → red | 💥 |
+| rpg | Indigo → violet | ⚔️ |
+| strategy | Navy → blue | ♟️ |
+| sports | Dark green → green | 🏆 |
+| adventure | Brown → amber | 🗺️ |
+
+##### Dark / Light mode
+
+The toggle button (top-right of header) adds/removes the `dark` class on `<html>`. Tailwind's `darkMode: 'class'` strategy applies `dark:` variants throughout all templates. The preference is persisted in `localStorage` and restored before Tailwind loads to prevent a flash of wrong theme. Default: dark mode.
 
 ---
 
@@ -154,3 +171,5 @@ UI            ← Application + Symfony/Twig/GraphQL
 | `final` on all use case classes | Prevents unintended inheritance that could break invariants |
 | Separate `ListGames` + `FindGame` use cases | Each use case has a single, clear responsibility |
 | Tailwind via CDN | No Node.js build step needed for the demo web catalog |
+| CSS gradients for game covers | No external image service dependency; genre color reinforces visual identity |
+| `localStorage` for theme preference | Persists dark/light choice across sessions without a database or session |

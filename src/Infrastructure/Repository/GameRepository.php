@@ -14,7 +14,7 @@ use Saz\Game\Domain\Game\ValueObject\GameName;
 /**
  * @extends DoctrineRepository<Game>
  */
-final class DoctrineGameRepository extends DoctrineRepository implements GameRepositoryInterface
+final class GameRepository extends DoctrineRepository implements GameRepositoryInterface
 {
     protected function getEntityClass(): string
     {

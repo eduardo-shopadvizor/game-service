@@ -24,8 +24,8 @@
 {% set emoji      = genreEmojis[game.genre().value] ?? '🎮' %}
 
 <a href="{{ path('catalog_show', {id: game.id()}) }}"
-   class="group block bg-white dark:bg-gray-900 rounded-xl border border-gray-300 dark:border-gray-800 overflow-hidden
-          shadow-sm dark:shadow-none hover:border-violet-400 dark:hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-500/10
+   class="group block bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden
+          shadow-md dark:shadow-none hover:border-violet-400 dark:hover:border-violet-500/50 hover:shadow-lg hover:shadow-violet-500/10
           transition-all duration-300 hover:-translate-y-1">
 
     <div class="aspect-video relative overflow-hidden" style="background: {{ gradient }}">
@@ -46,9 +46,9 @@
             {{ game.name() }}
         </h3>
         {% if game.description() %}
-            <p class="mt-1.5 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{{ game.description() }}</p>
+            <p class="mt-1.5 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{{ game.description() }}</p>
         {% endif %}
-        <p class="mt-3 text-xs text-gray-400 dark:text-gray-600">
+        <p class="mt-3 text-xs text-gray-500 dark:text-gray-600">
             Added {{ game.createdAt()|date('M Y') }}
         </p>
     </div>

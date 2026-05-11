@@ -31,7 +31,7 @@
 
 <div class="mb-6">
     <a href="{{ path('catalog_index') }}"
-       class="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+       class="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
@@ -52,7 +52,7 @@
     </div>
 
     {# Game info #}
-    <div class="space-y-6">
+    <div class="space-y-6 bg-white dark:bg-transparent rounded-2xl p-6 shadow-md dark:shadow-none border border-gray-200 dark:border-transparent">
 
         <div>
             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ring-1 {{ genreColor }} mb-3">
@@ -65,13 +65,13 @@
             <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{{ game.description() }}</p>
         {% endif %}
 
-        <div class="pt-4 border-t border-gray-200 dark:border-gray-800 grid grid-cols-2 gap-4 text-sm">
+        <div class="pt-4 border-t border-gray-300 dark:border-gray-800 grid grid-cols-2 gap-4 text-sm">
             <div>
-                <p class="text-gray-400 dark:text-gray-500 mb-1">Added</p>
+                <p class="text-gray-500 dark:text-gray-500 mb-1">Added</p>
                 <p class="text-gray-900 dark:text-gray-200 font-medium">{{ game.createdAt()|date('F j, Y') }}</p>
             </div>
             <div>
-                <p class="text-gray-400 dark:text-gray-500 mb-1">Last updated</p>
+                <p class="text-gray-500 dark:text-gray-500 mb-1">Last updated</p>
                 <p class="text-gray-900 dark:text-gray-200 font-medium">{{ game.updatedAt()|date('F j, Y') }}</p>
             </div>
         </div>

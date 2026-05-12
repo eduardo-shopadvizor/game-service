@@ -62,6 +62,6 @@ jobs:
           COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Run tests
-        run: composer test:all
+        run: composer test
         env:
           APP_ENV: test

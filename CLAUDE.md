@@ -24,9 +24,7 @@ step-by-step workflow so you don't have to infer them from scratch.
 ## Commands
 
 ```bash
-composer test            # Run PHPUnit only (no DB setup/teardown)
-composer test:all        # Full suite: DB setup, run tests, cleanup
-composer test:initialize # Set up test database
+composer test            # Run PHPUnit (test env uses SQLite — no DB setup needed)
 
 # Single test
 php bin/phpunit tests/Unit/Application/Game/Create/CreateGameCommandHandlerTest.php

@@ -89,3 +89,19 @@ PHPStan runs at **level 8** — all new code must pass.
 | `GAME_CREATED_TOPIC`, `GAME_UPDATED_TOPIC`, `GAME_DELETED_TOPIC` | Outbound event topics |
 
 Copy `.env.dev` to `.env.local` for local development.
+
+## Migrations
+
+Run inside the Docker container. Always review the generated SQL before applying:
+
+```bash
+# 1. Generate migration from schema diff
+docker exec -it <container_name> php bin/console doctrine:migrations:diff
+
+# 2. Review the generated file in migrations/ before continuing
+
+# 3. Apply the migration
+docker exec -it <container_name> php bin/console doctrine:migrations:migrate
+```
+
+Never run `migrate` without reviewing the generated SQL first.

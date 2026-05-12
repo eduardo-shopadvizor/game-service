@@ -1,4 +1,4 @@
-# CLAUDE.md
+# 🎮 game-service — Claude Instructions
 
 ## Skills — check before starting any task
 

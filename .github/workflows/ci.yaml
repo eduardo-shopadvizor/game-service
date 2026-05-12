@@ -28,6 +28,8 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Run lint
         run: PHP_CS_FIXER_IGNORE_ENV=1 composer lint
@@ -56,6 +58,8 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        env:
+          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       - name: Run tests
         run: composer test:all

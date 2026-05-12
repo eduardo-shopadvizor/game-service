@@ -15,6 +15,12 @@ step-by-step workflow so you don't have to infer them from scratch.
 | Committing and pushing on a feature branch (`feature/SN-XXXX`) | `auto-commit` |
 | Code changes without an explicit commit request                | `no-auto-commit` |
 
+## Git workflow rules
+
+- **Never push or open a PR** unless explicitly asked. After a commit, stop there.
+- `dev` and `main` are protected branches — changes only go in via PR, never by direct push.
+- Always create feature branches from `dev` following the `feature/SN-XXXX` format.
+
 ## Commands
 
 ```bash

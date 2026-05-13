@@ -19,7 +19,16 @@
       "Bash(composer test *)",
       "Bash(xargs ls)",
       "Read(//home/edu/.claude/**)",
-      "Bash(python3 -m json.tool)"
+      "Bash(python3 -m json.tool)",
+      "Bash(gh pr create --base dev --head feature/SN-0019 --title 'SN-0019 Added Git workflow rules to CLAUDE.md' --body ' *)",
+      "Bash(gh pr create --base dev --head feature/SN-0021 --title 'SN-0021 Improved CLAUDE.md title' --body ' *)",
+      "Bash(gh pr create --base dev --head feature/SN-0022 --title 'SN-0022 Added GitHub Actions CI workflow' --body ' *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('repositories', []\\), indent=2\\)\\)\")",
+      "Read(//home/edu/.composer/**)",
+      "Read(//home/edu/.config/composer/**)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts', {}\\), indent=2\\)\\)\")",
+      "Bash(gh pr create --base dev --head feature/SN-0023 --title 'SN-0023 Added security and code analysis workflows' --body ' *)",
+      "Bash(gh pr *)"
     ]
   }
 }

@@ -9,7 +9,7 @@
 ### Endpoint
 
 ```
-POST /graphql
+POST /
 ```
 
 ### Schema
@@ -67,6 +67,65 @@ query {
     }
 }
 ```
+
+---
+
+### Mutations
+
+#### `createGame` — Create a new game
+
+```graphql
+mutation CreateGame($input: CreateGameInput!) {
+    createGame(input: $input) {
+        id
+        name
+        genre
+    }
+}
+```
+
+**Variables:**
+```json
+{
+    "input": {
+        "name": "Elden Ring",
+        "description": "FromSoftware's open-world masterpiece.",
+        "genre": "rpg"
+    }
+}
+```
+
+**Returns:** the created `Game`.
+
+---
+
+#### `updateGame` — Update an existing game
+
+```graphql
+mutation UpdateGame($id: ID!, $input: UpdateGameInput!) {
+    updateGame(id: $id, input: $input) {
+        id
+        name
+        description
+        genre
+        updatedAt
+    }
+}
+```
+
+**Variables:**
+```json
+{
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "input": {
+        "name": "Elden Ring",
+        "description": "Updated description.",
+        "genre": "rpg"
+    }
+}
+```
+
+**Returns:** the updated `Game`. Throws `GameNotFoundException` if the id does not exist.
 
 ---
 

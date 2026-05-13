@@ -57,6 +57,8 @@ Use cases organised by feature. Each feature directory contains a **Query/Comman
 |---|---|---|---|
 | Find game by ID | `GetGameByIdQuery` | `FindGame` | `GetGameByIdQueryHandler` |
 | List games (with optional genre filter) | `ListGamesQuery` | `ListGames` | `ListGamesQueryHandler` |
+| Create a game | `CreateGameCommand` | `CreateGame` | `CreateGameHandler` |
+| Update a game | `UpdateGameCommand` | `UpdateGame` | `UpdateGameHandler` |
 
 #### Patterns
 
@@ -115,6 +117,8 @@ Built with OverblogGraphQL + SazHelixGraphQL bundles.
 | Component | Location | Role |
 |---|---|---|
 | `GameQuery` | `Resolver/Query/GameQuery.php` | Resolves `query { game(id) }` |
+| `CreateGameMutation` | `Resolver/Mutation/CreateGameMutation.php` | Resolves `mutation { createGame(...) }` |
+| `UpdateGameMutation` | `Resolver/Mutation/UpdateGameMutation.php` | Resolves `mutation { updateGame(...) }` |
 | `GameResolverMap` | `ResolverMap/GameResolverMap.php` | Wires resolvers to the schema |
 | `FieldResolver` | `FieldResolver/FieldResolver.php` | Converts `BackedEnum` to string for GraphQL |
 

@@ -1,3 +1,4 @@
 type Mutation {
     createGame(input: CreateGameInput!): Game!
+    updateGame(id: ID!, input: UpdateGameInput!): Game!
 }

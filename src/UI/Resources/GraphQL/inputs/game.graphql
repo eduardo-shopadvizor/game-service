@@ -3,3 +3,9 @@ input CreateGameInput {
     description: String
     genre: String!
 }
+
+input UpdateGameInput {
+    name: String!
+    description: String
+    genre: String!
+}
